@@ -1,14 +1,16 @@
-import {JSX, RefAttributes, useState} from 'react';
-import {Text, View} from 'react-native';
-import {Button, ButtonProps, SegmentedButtons} from 'react-native-paper';
+import { JSX, RefAttributes, useState } from "react";
+import { StyleProp, Text, View } from "react-native";
+import { Button, ButtonProps, SegmentedButtons } from "react-native-paper";
+import { Style } from "react-native-paper/lib/typescript/components/List/utils";
 
 interface Props {
   value: string;
   onValueChange: (value: string) => void;
-  buttons: {value: string; label: string; disabled?: boolean}[];
+  buttons: { value: string; label: string; disabled?: boolean }[];
   textColor?: string;
   secondaryTextColor?: string;
   backgroundColor?: string;
+  style?: StyleProp<Style>;
 }
 
 export const CustomSegmentedButtons = ({
@@ -18,8 +20,9 @@ export const CustomSegmentedButtons = ({
   textColor,
   secondaryTextColor,
   backgroundColor,
+  style,
 }: Props) => {
-  const customButtons = buttons.map(button => {
+  const customButtons = buttons.map((button) => {
     return {
       ...button,
       checkedColor: textColor,
@@ -39,6 +42,7 @@ export const CustomSegmentedButtons = ({
       onValueChange={onValueChange}
       buttons={customButtons}
       theme={customTheme}
+      style={style}
     />
   );
 };
